@@ -1,16 +1,13 @@
 module top_module (
     input clk,
-    input d,
-    output q
-);
-    reg q1,q2;
-    always @ (posedge clk) begin
-    	q1 <= q2^d; 
-    end
+    input reset,      // Synchronous active-high reset
+    output [3:0] q);
     
-    always @ (negedge clk) begin
-    	q2 <= q1^d; 
-    end
-    
-    assign q = q1^q2; 
+    always@(posedge clk)
+        begin
+            if(reset) q <= 0;
+            else q <= q +1;
+        end
+
 endmodule
+
