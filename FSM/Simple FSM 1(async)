@@ -9,8 +9,6 @@ module top_module(
 
     always @(*) begin    // This is a combinational always block
         // State transition logic
-        if(areset)
-            next_state <= B;
         if(state==B)
             next_state <= in? B:A;
         if(state==A)
